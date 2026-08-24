@@ -1,1 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberty Givens | Real Brokerage — Let's Find Your Next Address</title>
+<meta name="description" content="Work with Liberty Givens, licensed real estate agent with Real Brokerage. Share what you're looking for and get a personal reply within one business day.">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F3F4EF;
+    --bg-alt:#EAECE3;
+    --card:#FFFFFF;
+    --ink:#1E2A28;
+    --ink-soft:#51605C;
+    --ink-faint:#8A968F;
+    --brass:#A9824C;
+    --brass-dark:#8A6A3B;
+    --sage:#5E7259;
+    --line:#DCDDD2;
+    --radius:12px;
+    --radius-lg:20px;
+    --shadow: 0 1px 2px rgba(30,42,40,0.04), 0 8px 24px -12px rgba(30,42,40,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:450;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    background:var(--bg);
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:16px 0;
+  }
+  .agent-id{
+    display:flex;
+    flex-direction:column;
+    line-height:1.25;
+  }
+  .agent-id .name{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:600;
+  }
+  .agent-id .role{
+    font-size:12.5px;
+    color:var(--ink-faint);
+    letter-spacing:0.02em;
+  }
+  .topbar-contact{
+    display:flex;
+    gap:20px;
+    font-size:14px;
+    font-weight:500;
+  }
+  .topbar-contact a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.15s ease, color 0.15s ease;
+    padding-bottom:2px;
+  }
+  .topbar-contact a:hover,
+  .topbar-contact a:focus-visible{
+    color:var(--brass-dark);
+    border-color:var(--brass);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:64px 0 72px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:start;
+  }
+  .eyebrow{
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--sage);
+    margin:0 0 18px;
+  }
+  .hero-copy h1{
+    font-size:clamp(34px, 4.6vw, 52px);
+    line-height:1.08;
+    max-width:11ch;
+  }
+  .lede{
+    margin:22px 0 0;
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:44ch;
+  }
+  .trust-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:32px;
+  }
+  .trust-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 16px;
+    font-size:14px;
+    font-weight:500;
+    text-decoration:none;
+    color:var(--ink);
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .trust-chip:hover, .trust-chip:focus-visible{
+    border-color:var(--brass);
+    transform:translateY(-1px);
+  }
+  .trust-chip svg{ flex:none; }
+
+  .credential-line{
+    margin-top:36px;
+    font-size:13px;
+    color:var(--ink-faint);
+    border-top:1px solid var(--line);
+    padding-top:18px;
+    max-width:38ch;
+  }
+
+  /* ---------- Form panel ---------- */
+  .form-panel{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    padding:34px 30px 28px;
+    overflow:hidden;
+  }
+  .key-art{
+    position:absolute;
+    top:-18px;
+    right:-22px;
+    width:150px;
+    height:150px;
+    opacity:0.09;
+    pointer-events:none;
+  }
+  .form-panel h2{
+    font-size:22px;
+    font-weight:450;
+    margin-bottom:4px;
+    position:relative;
+  }
+  .form-sub{
+    font-size:13.5px;
+    color:var(--ink-faint);
+    margin:0 0 22px;
+    position:relative;
+  }
+
+  .field{
+    margin-bottom:16px;
+    position:relative;
+  }
+  .field label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  select,
+  textarea{
+    width:100%;
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+    color:var(--ink);
+    background:#FBFBF9;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:11px 13px;
+    transition:border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  select{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2351605C' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 13px center; padding-right:34px; }
+  textarea{ resize:vertical; min-height:80px; }
+
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible{
+    outline:none;
+    border-color:var(--brass);
+    box-shadow:0 0 0 3px rgba(169,130,76,0.18);
+  }
+
+  .consent{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:18px 0 20px;
+  }
+  .consent input{ margin-top:3px; accent-color:var(--brass); flex:none; width:16px; height:16px; }
+  .consent label{ font-size:12.5px; color:var(--ink-faint); line-height:1.5; }
+
+  button.submit{
+    width:100%;
+    background:var(--ink);
+    color:#F7F7F3;
+    border:none;
+    border-radius:var(--radius);
+    font-family:'Inter', sans-serif;
+    font-size:15.5px;
+    font-weight:600;
+    padding:13px 18px;
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.1s ease;
+  }
+  button.submit:hover{ background:var(--brass-dark); }
+  button.submit:active{ transform:translateY(1px); }
+  button.submit:focus-visible{ outline:3px solid var(--brass); outline-offset:2px; }
+
+  .form-note{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-faint);
+    margin:12px 0 0;
+  }
+
+  .form-success{
+    text-align:center;
+    padding:20px 6px 6px;
+  }
+  .form-success .check{
+    width:40px; height:40px;
+    border-radius:50%;
+    background:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px;
+  }
+  .form-success h3{ font-size:19px; margin-bottom:6px; }
+  .form-success p{ font-size:14px; color:var(--ink-soft); margin:0; }
+
+  .required-mark{ color:var(--brass-dark); }
+
+  /* ---------- Value props ---------- */
+  .value-props{
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:60px 0;
+  }
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .value-card h3{
+    font-size:19px;
+    font-weight:600;
+    font-family:'Inter', sans-serif;
+    margin-bottom:10px;
+  }
+  .value-card p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .value-mark{
+    width:34px; height:2px;
+    background:var(--brass);
+    margin-bottom:18px;
+  }
+
+  /* ---------- Process ---------- */
+  .process{ padding:68px 0 72px; }
+  .process-head{ max-width:52ch; margin-bottom:42px; }
+  .process-head h2{ font-size:30px; margin-bottom:12px; }
+  .process-head p{ color:var(--ink-soft); font-size:15.5px; margin:0; }
+
+  .process-steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+  }
+  .step{
+    padding:26px 24px 26px 0;
+    border-right:1px solid var(--line);
+  }
+  .step:last-child{ border-right:none; }
+  .step-num{
+    font-family:'Fraunces', serif;
+    font-size:14px;
+    color:var(--brass-dark);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .step h3{
+    font-family:'Inter', sans-serif;
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .step p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin:0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:38px 0 44px;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .footer-brand{ font-family:'Fraunces', serif; font-size:16px; font-weight:600; }
+  .footer-contact{
+    display:flex;
+    gap:18px;
+    font-size:13.5px;
+  }
+  .footer-contact a{ text-decoration:none; color:var(--ink-soft); }
+  .footer-contact a:hover{ color:var(--brass-dark); }
+  .footer-legal{
+    width:100%;
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--ink-faint);
+  }
+
+  /* ---------- Motion ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    .hero-copy, .form-panel{
+      animation: rise 0.6s ease both;
+    }
+    .form-panel{ animation-delay:0.08s; }
+    @keyframes rise{
+      from{ opacity:0; transform:translateY(10px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns:1fr; gap:40px; }
+    .hero-copy h1{ max-width:none; }
+    .value-grid{ grid-template-columns:1fr; gap:32px; }
+    .process-steps{ grid-template-columns:1fr; }
+    .step{ border-right:none; border-bottom:1px solid var(--line); padding:22px 0; }
+    .step:last-child{ border-bottom:none; }
+  }
+  @media (max-width: 520px){
+    .field-row{ grid-template-columns:1fr; }
+    .topbar-contact{ font-size:13px; gap:14px; }
+    .form-panel{ padding:26px 20px 22px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="agent-id">
+        <span class="name">Liberty Givens</span>
+        <span class="role">Real Brokerage · License #13974792-SA00</span>
+      </div>
+      <div class="topbar-contact">
+        <a href="tel:+14697443917">469-744-3917</a>
+        <a href="mailto:liberty.givens@theperry.group">liberty.givens@theperry.group</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+
+        <div class="hero-copy">
+          <p class="eyebrow">Buying &amp; Selling · Real Brokerage</p>
+          <h1>Let's find your next address.</h1>
+          <p class="lede">Tell me a bit about what you're looking for, and I'll follow up personally — no call center, no automated scripts, just a straight answer within one business day.</p>
+
+          <div class="trust-row">
+            <a class="trust-chip" href="tel:+14697443917">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9824C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              469-744-3917
+            </a>
+            <a class="trust-chip" href="mailto:liberty.givens@theperry.group">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9824C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              liberty.givens@theperry.group
+            </a>
+          </div>
+
+          <p class="credential-line">Liberty Givens is a licensed real estate agent with Real Brokerage, License #13974792-SA00.</p>
+        </div>
+
+        <div class="form-panel">
+          <svg class="key-art" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="42" cy="42" r="26" stroke="#A9824C" stroke-width="4"/>
+            <line x1="62" y1="62" x2="128" y2="128" stroke="#A9824C" stroke-width="4" stroke-linecap="round"/>
+            <line x1="104" y1="104" x2="118" y2="90" stroke="#A9824C" stroke-width="4" stroke-linecap="round"/>
+            <line x1="114" y1="114" x2="128" y2="100" stroke="#A9824C" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+
+          <h2>Tell me what you're looking for</h2>
+          <p class="form-sub">Every field marked <span class="required-mark">*</span> helps me follow up faster.</p>
+
+          <form id="leadForm" novalidate>
+            <div class="field">
+              <label for="fullName">Full name <span class="required-mark">*</span></label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="phone">Phone <span class="required-mark">*</span></label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="required-mark">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="interest">I'm looking to <span class="required-mark">*</span></label>
+                <select id="interest" name="interest" required>
+                  <option value="" disabled selected>Choose one</option>
+                  <option value="Buy">Buy a home</option>
+                  <option value="Sell">Sell a home</option>
+                  <option value="Both">Buy and sell</option>
+                  <option value="Exploring">Just exploring</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="timeframe">Timeframe</label>
+                <select id="timeframe" name="timeframe">
+                  <option value="" disabled selected>Choose one</option>
+                  <option value="ASAP">As soon as possible</option>
+                  <option value="1-3 months">1–3 months</option>
+                  <option value="3-6 months">3–6 months</option>
+                  <option value="Researching">Just researching</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="message">What should I know? </label>
+              <textarea id="message" name="message" placeholder="Neighborhoods, budget, must-haves — whatever's useful."></textarea>
+            </div>
+
+            <div class="consent">
+              <input type="checkbox" id="consent" name="consent" required>
+              <label for="consent">I agree to be contacted by phone, text, or email about my real estate needs. <span class="required-mark">*</span></label>
+            </div>
+
+            <button type="submit" class="submit">Send my info</button>
+            <p class="form-note">No spam. I personally read and respond to every message.</p>
+
+            <div class="form-success" id="formSuccess" hidden>
+              <div class="check">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Got it, thank you.</h3>
+              <p>I'm opening your email so you can send the details my way — I'll reply within one business day.</p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="value-props">
+      <div class="wrap value-grid">
+        <div class="value-card">
+          <div class="value-mark"></div>
+          <h3>Local, ground-level knowledge</h3>
+          <p>I know the neighborhoods block by block, not just the listing sheet — pricing, school zones, and what a street actually feels like at 6pm.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-mark"></div>
+          <h3>Fast, direct follow-up</h3>
+          <p>Your message comes straight to me. No hand-offs, no scripts — you'll hear from Liberty, personally, within one business day.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-mark"></div>
+          <h3>A guided, no-pressure process</h3>
+          <p>I'll walk you through each step in plain language before you make any decision, so nothing feels rushed or unclear.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="process">
+      <div class="wrap">
+        <div class="process-head">
+          <h2>How it works</h2>
+          <p>Three straightforward steps from first conversation to closing day.</p>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Connect</h3>
+            <p>Share what you're looking for above. I'll call or email to talk specifics and answer your first questions.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Tour</h3>
+            <p>We look at homes — or prepare yours to list — on your schedule, in person or virtually.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Close</h3>
+            <p>I handle the offers, paperwork, and timeline so you can focus on the move itself.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-brand">Liberty Givens</span>
+        <div class="footer-contact">
+          <a href="tel:+14697443917">469-744-3917</a>
+          <a href="mailto:liberty.givens@theperry.group">liberty.givens@theperry.group</a>
+        </div>
+      </div>
+      <p class="footer-legal">Liberty Givens is a licensed real estate agent affiliated with Real Brokerage, License #13974792-SA00. &copy; <span id="year"></span> Liberty Givens. All information deemed reliable but not guaranteed.</p>
+    </div>
+  </footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const form = document.getElementById('leadForm');
+  const successPanel = document.getElementById('formSuccess');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const data = {
+      fullName: form.fullName.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      interest: form.interest.value,
+      timeframe: form.timeframe.value || 'Not specified',
+      message: form.message.value.trim() || 'None provided'
+    };
+
+    const subject = encodeURIComponent('New lead: ' + data.fullName + ' (' + data.interest + ')');
+    const body = encodeURIComponent(
+      'Name: ' + data.fullName + '\n' +
+      'Phone: ' + data.phone + '\n' +
+      'Email: ' + data.email + '\n' +
+      'Looking to: ' + data.interest + '\n' +
+      'Timeframe: ' + data.timeframe + '\n' +
+      'Message: ' + data.message
+    );
+
+    window.location.href = 'mailto:liberty.givens@theperry.group?subject=' + subject + '&body=' + body;
+
+    form.hidden = true;
+    successPanel.hidden = false;
+  });
+</script>
+
+</body>
+</html>
